@@ -1,11 +1,15 @@
 # Changelog
 
-## 0.1.0 — 2026-07-30
+## 0.1.1 — Cloudflare deployment readiness
 
-- Created the first executable Future Court AI PWA vertical slice.
-- Added one fictional case, two sides and a 500-character argument flow.
-- Added deterministic, versioned four-dimension rubric scoring.
-- Added privacy-safe challenge links and invited comparison.
-- Added PWA manifest, service worker and Android-size icons.
-- Added Node tests, production build script and GitHub Actions workflow.
-- Added a Supabase Edge Function scaffold for Gemini structured output.
+- Corrected the service worker scope so it controls the application root.
+- Flattened public PWA assets into the Cloudflare Pages output root.
+- Added Cloudflare Pages security and cache headers.
+- Added a network-first service worker update strategy.
+- Pinned Node.js 22.16.0 for reproducible Pages builds.
+- Added the Cloudflare deployment and rollback guide.
+
+## 0.1.0 — Vertical slice
+
+- Added the fictional case, argument, deterministic verdict and friend challenge flow.
+- Added PWA assets, tests, build script, documentation and Gemini Edge Function scaffold.
