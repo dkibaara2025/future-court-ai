@@ -12,7 +12,8 @@ A zero-dependency, web-first PWA vertical slice for a three-minute fictional fut
 - Privacy-safe challenge link containing no argument text
 - Friend participation and comparison screen
 - Device-local verdict history
-- PWA manifest, service worker and install icons
+- Root-scoped PWA manifest, service worker and install icons
+- Cloudflare Pages security headers and deployment guide
 - Node unit/artifact tests and GitHub Actions workflow
 - Supabase Edge Function scaffold for Gemini structured output
 
@@ -30,10 +31,19 @@ Open `http://localhost:4173`. Complete a verdict, select **Challenge a friend**,
 npm run check
 ```
 
-The build is written to `dist/`.
+The Cloudflare-ready build is written to `dist/`.
+
+## Cloudflare Pages settings
+
+- Framework preset: `None`
+- Build command: `npm run build`
+- Output directory: `dist`
+- Production branch: `main`
+
+See [`docs/CLOUDFLARE_DEPLOYMENT.md`](docs/CLOUDFLARE_DEPLOYMENT.md) for deployment and verification steps.
 
 ## Limitations
 
-This is a vertical-slice prototype, not the approved production implementation. It deliberately uses a deterministic local rubric so no private argument leaves the device. The challenge payload is not cryptographically signed. Supabase Auth/Postgres/RLS, quotas, Turnstile, server-side Gemini consent, report/block/delete persistence, Paystack sandbox and deployment are not yet implemented.
+This is a vertical-slice prototype, not the approved production implementation. It deliberately uses a deterministic local rubric so no private argument leaves the device. The challenge payload is not cryptographically signed. Supabase Auth/Postgres/RLS, quotas, Turnstile, server-side Gemini consent, report/block/delete persistence and Paystack sandbox are not yet implemented.
 
 The approved production architecture remains React/TypeScript + Cloudflare Pages + Supabase + Gemini + Paystack. This zero-dependency slice exists to prove the interaction before external credentials and package installation are available.
