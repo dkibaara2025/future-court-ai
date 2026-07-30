@@ -2,6 +2,15 @@
 
 A zero-dependency, web-first PWA vertical slice for a three-minute fictional future-court argument game.
 
+## Live deployment
+
+- Production URL: `https://future-court-ai-dkibaara2025.dkibaara.workers.dev/`
+- Deployment platform: Cloudflare Workers & Pages
+- Production branch: `main`
+- Current application version: `0.1.1`
+
+The deployment has been visually verified from the public production route and Cloudflare dashboard. Independent automated response-header verification remains pending because the assistant web-fetch environment could not resolve the new `workers.dev` hostname.
+
 ## Implemented
 
 - Landing proposition and 18+ gate
