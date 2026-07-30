@@ -1,4 +1,4 @@
-const CACHE = 'future-court-v1';
+const CACHE = 'future-court-v2';
 const SHELL = [
   '/',
   '/index.html',
@@ -8,9 +8,9 @@ const SHELL = [
   '/src/domain/scoring.js',
   '/src/lib/challenge.js',
   '/src/lib/storage.js',
-  '/public/manifest.webmanifest',
-  '/public/icons/icon-192.png',
-  '/public/icons/icon-512.png'
+  '/manifest.webmanifest',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png'
 ];
 
 self.addEventListener('install', (event) => {
@@ -26,12 +26,23 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
+  const request = event.request;
+  if (request.method !== 'GET' || new URL(request.url).origin !== self.location.origin) return;
+
   event.respondWith(
-    caches.match(event.request).then((cached) => cached || fetch(event.request).then((response) => {
-      const copy = response.clone();
-      caches.open(CACHE).then((cache) => cache.put(event.request, copy));
-      return response;
-    }).catch(() => caches.match('/index.html'))),
+    fetch(request)
+      .then((response) => {
+        if (response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE).then((cache) => cache.put(request, copy));
+        }
+        return response;
+      })
+      .catch(async () => {
+        const cached = await caches.match(request);
+        if (cached) return cached;
+        if (request.mode === 'navigate') return caches.match('/index.html');
+        return Response.error();
+      }),
   );
 });
