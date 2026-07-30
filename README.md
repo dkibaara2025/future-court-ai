@@ -2,15 +2,6 @@
 
 A zero-dependency, web-first PWA vertical slice for a three-minute fictional future-court argument game.
 
-## Live deployment
-
-- Production URL: `https://future-court-ai-dkibaara2025.dkibaara.workers.dev/`
-- Deployment platform: Cloudflare Workers & Pages
-- Production branch: `main`
-- Current application version: `0.1.1`
-
-The deployment has been visually verified from the public production route and Cloudflare dashboard. Independent automated response-header verification remains pending because the assistant web-fetch environment could not resolve the new `workers.dev` hostname.
-
 ## Implemented
 
 - Landing proposition and 18+ gate
@@ -50,6 +41,13 @@ The Cloudflare-ready build is written to `dist/`.
 - Production branch: `main`
 
 See [`docs/CLOUDFLARE_DEPLOYMENT.md`](docs/CLOUDFLARE_DEPLOYMENT.md) for deployment and verification steps.
+
+
+## Supabase backend baseline
+
+The `supabase/` directory now contains a versioned backend baseline with Row Level Security, seed data, atomic quota/idempotency functions and an authenticated `judge-argument` Edge Function. It is **prepared but not yet deployed**. Follow [`docs/SUPABASE_DEPLOYMENT.md`](docs/SUPABASE_DEPLOYMENT.md) and complete every test in [`docs/SUPABASE_SECURITY_TESTS.md`](docs/SUPABASE_SECURITY_TESTS.md) before connecting the production browser client.
+
+No credential or secret is stored in the repository.
 
 ## Limitations
 
